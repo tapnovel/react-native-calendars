@@ -65,7 +65,7 @@ class CalendarHeader extends Component {
   onPressLeft() {
     const {onPressArrowLeft} = this.props;
     if(typeof onPressArrowLeft === 'function') {
-      return onPressArrowLeft(this.substractMonth);
+      return onPressArrowLeft(this.substractMonth, this.props.month);
     }
     return this.substractMonth();
   }
@@ -73,7 +73,7 @@ class CalendarHeader extends Component {
   onPressRight() {
     const {onPressArrowRight} = this.props;
     if(typeof onPressArrowRight === 'function') {
-      return onPressArrowRight(this.addMonth);
+      return onPressArrowRight(this.addMonth, this.props.month);
     }
     return this.addMonth();
   }
@@ -91,7 +91,7 @@ class CalendarHeader extends Component {
           testID={CHANGE_MONTH_LEFT_ARROW}
         >
           {this.props.renderArrow
-            ? this.props.renderArrow('left')
+            ? this.props.renderArrow('left', this.props.month)
             : <Image
                 source={require('../img/previous.png')}
                 style={this.style.arrowImage}
@@ -106,7 +106,7 @@ class CalendarHeader extends Component {
           testID={CHANGE_MONTH_RIGHT_ARROW}
         >
           {this.props.renderArrow
-            ? this.props.renderArrow('right')
+            ? this.props.renderArrow('right', this.props.month)
             : <Image
                 source={require('../img/next.png')}
                 style={this.style.arrowImage}
