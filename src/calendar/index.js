@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   View,
-  ViewPropTypes
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -17,8 +16,13 @@ import SingleDay from './day/custom';
 import CalendarHeader from './header';
 import shouldComponentUpdate from './updater';
 
-//Fallback when RN version is < 0.44
-const viewPropTypes = ViewPropTypes || View.propTypes;
+const ViewPropTypes = {
+  style: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+};
 
 const EmptyArray = [];
 
@@ -30,7 +34,7 @@ class Calendar extends Component {
     markedDates: PropTypes.object,
 
     // Specify style for calendar container element. Default = {}
-    style: viewPropTypes.style,
+    style: ViewPropTypes.style,
     // Initially visible month. Default = Date()
     current: PropTypes.any,
     // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
